@@ -31,13 +31,22 @@ export default function App() {
     });
   }
 
+  function onDeleteItem(id: string) {
+    client.models.Todo.delete({ id })
+  }
+
   return (
     <main>
       <h1>My todos</h1>
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
+          <li 
+            key={todo.id}
+            onClick={() => onDeleteItem(todo.id)}
+          >
+            {todo.content}
+          </li>
         ))}
       </ul>
       <div>
